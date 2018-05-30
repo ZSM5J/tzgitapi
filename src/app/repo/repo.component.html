@@ -1,0 +1,63 @@
+<div class="repotitle">
+{{name}}'s issues:
+</div>
+<div class="issuesblock">
+  <button mat-button color="primary" (click)="showCreated()"><mat-icon aria-label="delete this repo">add_circle</mat-icon> new issue </button>
+    <mat-card class="issue-card" *ngFor="let issue of issues; let i = index">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': issue.avatar}"></div>
+        <mat-card-title>{{issue.author}}</mat-card-title>
+        <mat-card-subtitle>{{issue.created | slice:0:10}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="title">
+          {{issue.title}}
+        </p>
+        <p>
+        {{issue.body}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="getComments(i)"><mat-icon aria-label="delete this repo">comment</mat-icon> {{issue.commentsCount}}</button>
+        <button mat-button color="primary" (click)="getComments(i)">write comment</button>
+      </mat-card-actions>
+    </mat-card>
+</div>
+<div class="commentsblock">
+  <p class="title">{{choosenIssue}}</p>
+  <mat-card class="issue-card" *ngFor="let comment of comments; let i = index">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [ngStyle]="{'background-image': comment.avatar}"></div>
+      <mat-card-title>{{comment.author}}</mat-card-title>
+    <mat-card-subtitle>{{comment.created | slice:0:10}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <p class="comment-text">
+    {{comment.body}}
+    </p>
+    </mat-card-content>
+  </mat-card>
+  <div class="add-comment" *ngIf="showCommentInput">
+        <mat-form-field #commentform>
+          <textarea rows="8" cols="30" matInput placeholder="your comment" [(ngModel)]="newComment.body"></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="sendComment()">send</button>
+   </div>
+</div>
+
+
+<div class="edit" *ngIf="showCreate" (click)="closeCreated()">
+  <div class="container" (click)="$event.stopPropagation()">
+    <mat-form-field>
+      <input matInput placeholder="title" [(ngModel)]="newIssue.title">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea rows="8" cols="30" matInput placeholder="what's your problem?" [(ngModel)]="newIssue.body"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createIssue()">create</button>
+    <button mat-raised-button color="primary" (click)="closeCreated()">cancel</button>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,62 @@
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter by language">
+</mat-form-field>
+
+<br/>
+
+<div class="edit" *ngIf="showEdit" (click)="closeEdit()">
+  <div class="container" (click)="$event.stopPropagation()">
+    <mat-form-field>
+      <input matInput placeholder="repo name" [(ngModel)]="editable.name">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea rows="8" cols="30" matInput placeholder="description" [(ngModel)]="editable.description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="language" [(ngModel)]="editable.language">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="saveEdit()">save</button>
+    <button mat-raised-button color="primary" (click)="closeEdit()">cancel</button>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+
+  <ng-container matColumnDef="modify">
+    <th mat-header-cell *matHeaderCellDef>
+      modify
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="wrapicons">
+      <button mat-icon-button (click)="deleteRepo(element)" color="primary"> <mat-icon aria-label="delete this repo">delete</mat-icon></button>
+      <button mat-icon-button (click)="editRepo(element)" color="primary"> <mat-icon aria-label="edit this repo">edit</mat-icon></button>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+    <td mat-cell *matCellDef="let element;let i = index"  id="td">
+    {{element.name}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="description" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="language">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> language </th>
+    <td mat-cell *matCellDef="let element"> {{element.language}}  </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="url" (click)="goToRepo(row)"></tr>
+
+</table>
+
+<mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+
+
+

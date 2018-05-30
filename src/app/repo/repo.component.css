@@ -1,0 +1,48 @@
+.repotitle{
+  width: 100%;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.issuesblock, .commentsblock {
+  width: 50%;
+  margin: 0;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+
+.issuesblock {
+  float: left;
+}
+
+.commentsblock {
+  float: right;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+
+p {
+  word-wrap: break-word;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.comment-text {
+  font-style: italic;
+}
+
+.add-comment {
+  width: 90%;
+  padding: 10px;
+  margin-top: 25px;
+}
