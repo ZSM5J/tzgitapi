@@ -1,4 +1,4 @@
-# тестовое задание по angular 5.
+# тестовое задание по angular 5. demo: https://stackblitz.com/github/zsm5j/tzgitapi
 
 Используя открытое API github ( https://api.github.com/users/Automattic/repos ) написать систему контроля репозиториев.
 
